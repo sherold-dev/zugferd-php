@@ -10,6 +10,13 @@ use JMS\Serializer\Annotation\XmlList;
 class TradeParty
 {
 
+	/**
+	 * @var string
+	 * @Type("string")
+	 * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+	 * @SerializedName("ID")
+	 */
+	private $id;
     /**
      * @var string
      * @Type("string")
@@ -31,12 +38,32 @@ class TradeParty
      */
     private $taxRegistrations;
 
-    public function __construct($name = '', Address $address, array $taxRegistrations = array())
-    {
-        $this->name = $name;
-        $this->address = $address;
-        $this->taxRegistrations = $taxRegistrations;
-    }
+	public function __construct ( $id = '', $name = '', Address $address, array $taxRegistrations = array() )
+	{
+		$this->id = $id;
+		$this->name = $name;
+		$this->address = $address;
+		$this->taxRegistrations = $taxRegistrations;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	/**
+	 * @param string $id
+	 *
+	 * @return self
+	 */
+	public function setId($id)
+	{
+		$this->id = $id;
+		return $this;
+	}
 
     /**
      * @return string
