@@ -17,6 +17,15 @@ class TradeParty
 	 * @SerializedName("ID")
 	 */
 	private $id;
+
+	/**
+	 * @var GlobalId
+	 * @Type("Easybill\ZUGFeRD\Model\Trade\GlobalId")
+	 * @XmlElement(cdata = false, namespace = "urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:12")
+	 * @SerializedName("GlobalID")
+	 */
+	private $globalID;
+
     /**
      * @var string
      * @Type("string")
@@ -38,9 +47,10 @@ class TradeParty
      */
     private $taxRegistrations;
 
-	public function __construct ( $id = '', $name = '', Address $address, array $taxRegistrations = array() )
+	public function __construct ( $id = '', $name = '', Address $address, $globalID= null, array $taxRegistrations = array() )
 	{
 		$this->id = $id;
+		$this->globalID = ($globalID) ? new GlobalId($globalID) : null;
 		$this->name = $name;
 		$this->address = $address;
 		$this->taxRegistrations = $taxRegistrations;
